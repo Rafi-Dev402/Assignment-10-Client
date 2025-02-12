@@ -1,11 +1,11 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../FirebaseConfig";
 
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {
-    const [user,setUser] = useState(null)
+    const [user,setUser] = useState(null);
 
     // For SignUP User---------->
     const userSignUp = (email, password) => {
@@ -17,6 +17,11 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    // For GoogleSignIn
+    const googleProvider = new GoogleAuthProvider()
+    const googleLogin = ()=>{
+        return signInWithPopup(auth,googleProvider)
+    }
 
 
     // An Observer foe user signin Or sign Out---------------------------------->
@@ -40,6 +45,7 @@ const AuthProvider = ({ children }) => {
     const userData = {
         userSignUp,
         userSignIn,
+        googleLogin,
         user,
     }
     return (

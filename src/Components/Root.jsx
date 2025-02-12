@@ -6,7 +6,7 @@ import Footer from "./Footer";
 const Root = () => {
     return (
         <div>
-            <header className="">
+            <header className=" sticky top-0 z-20 ">
                 <Navbar/>
             </header>
 

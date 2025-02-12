@@ -1,34 +1,45 @@
 // 484px
 
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
+import GoogleButton from "../Components/GoogleButton";
 
 const LoginPage = () => {
-    const {userSignIn} = useContext(AuthContext)
+    const { userSignIn } = useContext(AuthContext)
+    const navigate = useNavigate()
 
-    const handleUserSignIn = (e)=>{
+    const handleUserSignIn = (e) => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        
+
         /// Authentication--------->
-        userSignIn(email,password)
-        .then((result)=>{
-            alert("Log In SuccessFull")
-        })
-        .catch((error)=>{
-            alert(error.message)
-            console.log(error.message)
-        })
+        userSignIn(email, password)
+            .then((result) => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Login Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                e.target.reset()
+                navigate("/")
+            })
+            .catch((error) => {
+                toast.error(error.message)
+            })
 
 
     }
     return (
         <div className="container mx-auto  montserrat-font">
-
-            <div className="card bg-[#f8f8f8] w-full max-w-sm lg:max-w-lg shrink-0 shadow-lg border-2 rounded-lg mx-auto">
+            <GoogleButton/>
+            <div className="card bg-[#f8f8f8] w-full max-w-sm lg:max-w-lg shrink-0 shadow-lg border rounded-lg mx-auto">
                 <h1 className="text-4xl font-bold text-center mt-5 text-[#333333]">Login now!</h1>
                 <form onSubmit={handleUserSignIn} className="card-body ">
                     <div className="form-control">

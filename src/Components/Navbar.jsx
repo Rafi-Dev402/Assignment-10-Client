@@ -1,18 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
     const links = (
         <>
             <li><NavLink className={'font-medium text-base '} to={'/'}>Home</NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={'/'}>All Equipment </NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={'/'}>Add Equipment  </NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={'/'}>Add Equipment  </NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={'/'}>My Equipment </NavLink></li>
+            <li><NavLink className={'font-medium text-base '} to={'allEEquipment'}>All Equipment </NavLink></li>
+            <li><NavLink className={'font-medium text-base '} to={''}>Add Equipment  </NavLink></li>
+            <li><NavLink className={'font-medium text-base '} to={''}>My Equipment </NavLink></li>
         </>
     )
     return (
-        <div>
+        <div className="mb-16 montserrat-font">
             <nav className="bg-[#27AE60]">
                 <div className="navbar  container md:container lg:w-7/8 mx-auto py-5">
                     <div className="navbar-start">
@@ -30,7 +29,7 @@ const Navbar = () => {
                         </div>
                         <div className="flex items-center gap-x-1">
                             <img src="/public/navicon.png" className="w-10" alt="" />
-                            <p className=" text-xl font-semibold text-white">EquiSports</p>
+                            <p className="text-lg lg:text-2xl font-semibold text-white ">EquiSports</p>
                         </div>
                         
                     </div>
@@ -43,7 +42,7 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end">
                         <img className="rounded-full mr-3.5" src="/public/user.png" alt="" />
-                        <a className="btn bg-[#FF9933] border-none text-white lg:px-6 py-4 text-base">Login</a>
+                        <Link to={'/login'} className="btn bg-[#FF9933] border-none text-white lg:px-6  text-lg">Login</Link>
                     </div>
                 </div>
             </nav>

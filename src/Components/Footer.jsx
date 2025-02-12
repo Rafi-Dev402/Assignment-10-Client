@@ -5,7 +5,7 @@ import { FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
     return (
-        <div className="bg-[#333333] montserrat-font">
+        <div className="bg-[#333333] montserrat-font mt-10 font">
             <div className="text-white">
                 <div className='pt-7 mb-8 '>
                     <h2 className='text-center text-white text-4xl font-bold mb-3'>EquiSports</h2>

@@ -4,6 +4,10 @@ import Root from "../Components/Root";
 import LoginPage from "../Pages/LoginPage";
 import HomePage from "../Pages/HomePage";
 import SignUp from "../Pages/SignUp";
+import MyEquipment from "../Pages/MyEquipment";
+import PrivetRoute from "./PrivetRoute";
+import AddEquipment from "../Pages/AddEquipment";
+import AllEquipment from "../Pages/AllEquipment";
 
 
 const router = createBrowserRouter([
@@ -23,6 +27,18 @@ const router = createBrowserRouter([
             path:'/signUp',
             element:<SignUp/>
         },
+        {
+          path:'myEquipment',
+          element:<PrivetRoute><MyEquipment/></PrivetRoute>
+        },
+        {
+          path:'/addEquipment',
+          element:<PrivetRoute><AddEquipment/></PrivetRoute>
+        },
+        {
+          path:'/allEquipment',
+          element:<AllEquipment/>
+        }
         
     ]
   },

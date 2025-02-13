@@ -24,9 +24,10 @@ const Navbar = () => {
     const links = (
         <>
             <li><NavLink className={'font-medium text-base '} to={'/'}>Home</NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={'allEEquipment'}>All Equipment </NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={''}>Add Equipment  </NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={''}>My Equipment </NavLink></li>
+            <li><NavLink className={'font-medium text-base '} to={'/allEquipment'}>All Equipment </NavLink></li>
+            <li><NavLink className={'font-medium text-base '} to={'/addEquipment'}>Add Equipment  </NavLink></li>
+            <li><NavLink className={'font-medium text-base '} to={'myEquipment'}>My Equipment </NavLink></li>
+            
         </>
     )
     return (

@@ -1,15 +1,18 @@
 // 484px
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import GoogleButton from "../Components/GoogleButton";
+import { RiEyeCloseFill } from "react-icons/ri";
+import { HiEye } from "react-icons/hi";
 
 const LoginPage = () => {
     const { userSignIn } = useContext(AuthContext)
     const navigate = useNavigate()
+    const [showPass, setShowPass] = useState(false)
 
     const handleUserSignIn = (e) => {
         e.preventDefault()
@@ -38,7 +41,7 @@ const LoginPage = () => {
     }
     return (
         <div className="container mx-auto  montserrat-font">
-            <GoogleButton/>
+            <GoogleButton />
             <div className="card bg-[#f8f8f8] w-full max-w-sm lg:max-w-lg shrink-0 shadow-lg border rounded-lg mx-auto">
                 <h1 className="text-4xl font-bold text-center mt-5 text-[#333333]">Login now!</h1>
                 <form onSubmit={handleUserSignIn} className="card-body ">
@@ -48,14 +51,20 @@ const LoginPage = () => {
                         </label>
                         <input name="email" type="email" placeholder="Enter Your Email" className="input input-bordered bg-white" required />
                     </div>
-                    <div className="form-control">
+                    <div className="form-control relative">
                         <label className="label">
                             <span className="label-text text-lg text-[#333333]">Password</span>
                         </label>
-                        <input name="password" type="password" placeholder="Enter Your Password" className="input input-bordered bg-white" required />
+                        <input name='password' type={(showPass) ? 'text' : 'password'} placeholder="Enter Your Password" className="input input-bordered bg-white" required />
+                        <button onClick={() => setShowPass(!showPass)} type='button' className='btn-xs absolute right-2 top-14  bg-transparent'>
+                            {
+                                (showPass) ? <HiEye className='text-xl text-black' /> : <RiEyeCloseFill className='text-xl text-black' />
+                            }
+                        </button>
                         <label className="label">
                             <a href="#" className="label-text-alt text-base font-semibold text-red-600 link link-hover ">Forgot password?</a>
                         </label>
+
                     </div>
                     <div className="form-control mt-6">
                         <button className="btn  bg-[#1e336e] hover:bg-[#152252] text-lg text-white">Login</button>

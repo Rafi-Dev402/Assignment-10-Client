@@ -6,11 +6,15 @@ import { auth } from '../FirebaseConfig';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import GoogleButton from '../Components/GoogleButton';
+import { RiEyeCloseFill } from "react-icons/ri";
+import { HiEye } from "react-icons/hi";
+
 
 const SignUp = () => {
     const { userSignUp } = useContext(AuthContext)
     const navigate = useNavigate()
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
+    const [showPass,setShowPass] = useState(false)
 
     const handleUserSignUp = (e) => {
         e.preventDefault()
@@ -96,11 +100,16 @@ const SignUp = () => {
                         </label>
                         <input name='photo' type="text" placeholder="Enter Your Photo URL" className="input input-bordered bg-white" required />
                     </div>
-                    <div className="form-control">
+                    <div className="form-control relative">
                         <label className="label">
                             <span className="label-text text-lg text-[#333333]">Password</span>
                         </label>
-                        <input name='password' type="password" placeholder="Enter Your Password" className="input input-bordered bg-white" required />
+                        <input name='password' type={(showPass) ? 'text' : 'password'} placeholder="Enter Your Password" className="input input-bordered bg-white" required />
+                        <button onClick={()=>setShowPass(!showPass)} type='button' className='btn-xs absolute right-2 top-14  bg-transparent'>
+                            {
+                                (showPass) ? <HiEye className='text-xl text-black' /> : <RiEyeCloseFill className='text-xl text-black' />
+                            }
+                        </button>
                     </div>
                     {/* For Error Message */}
                     {

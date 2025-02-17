@@ -4,6 +4,8 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { signOut } from "firebase/auth";
 import { auth } from "../FirebaseConfig";
 import toast from "react-hot-toast";
+import navIcon from '../assets/navicon.png'
+import userImg from '../assets/user.png'
 
 
 const Navbar = () => {
@@ -48,7 +50,7 @@ const Navbar = () => {
                             </ul>
                         </div>
                         <div className="flex items-center gap-x-1">
-                            <img src="/public/navicon.png" className="w-10" alt="" />
+                            <img src={navIcon} className="w-10" alt="" />
                             <p className="text-lg lg:text-2xl font-semibold text-white ">EquiSports</p>
                         </div>
 
@@ -65,9 +67,9 @@ const Navbar = () => {
                         {
                             (user) ?
                                 (user.photoURL) ? 
-                                    <img className="rounded-full mr-6 btn btn-circle border-none object-fill" src={user?.photoURL} alt="" />
+                                    <img className="rounded-full mr-6 btn btn-circle border-none object-fill " src={user?.photoURL} alt="" />
                                 :
-                                    <img src="/public/user.png" className="rounded-full mr-6 btn btn-circle border-none" alt="" />
+                                    <img src={userImg} className="rounded-full mr-6 btn btn-circle border-none" alt="" />
                             :
                             null
                         }

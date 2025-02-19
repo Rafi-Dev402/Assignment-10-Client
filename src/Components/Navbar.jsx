@@ -29,7 +29,7 @@ const Navbar = () => {
             <li><NavLink className={'font-medium text-base '} to={'/allEquipment'}>All Equipment </NavLink></li>
             <li><NavLink className={'font-medium text-base '} to={'/addEquipment'}>Add Equipment  </NavLink></li>
             <li><NavLink className={'font-medium text-base '} to={'myEquipment'}>My Equipment </NavLink></li>
-            
+
         </>
     )
     return (
@@ -66,14 +66,16 @@ const Navbar = () => {
 
                         {
                             (user) ?
-                                (user.photoURL) ? 
-                                    <img className="rounded-full mr-6 btn btn-circle border-none object-fill " src={user?.photoURL} alt="" />
-                                :
+                                (user.photoURL) ?
+                                    <span className="border-[2px] border-white mr-2 md:mr-6 lg:mr-6 rounded-full btn btn-circle">
+                                        <img className="rounded-full   border-none object-fill " src={user?.photoURL} alt="" />
+                                    </span>
+                                    :
                                     <img src={userImg} className="rounded-full mr-6 btn btn-circle border-none" alt="" />
-                            :
-                            null
+                                :
+                                null
                         }
-                        
+
                         {
                             (user) ? <button onClick={handleLogOut} className="btn bg-[#FF9933] border-none text-white lg:px-6  text-lg">Log Out</button>
                                 :

@@ -1,3 +1,4 @@
+import BannerEquepment from "./BannerEquepment";
 import Slider from "./Slider";
 
 

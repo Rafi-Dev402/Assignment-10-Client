@@ -14,7 +14,7 @@ const Root = () => {
                 <Outlet />
             </main>
 
-            <footer>
+            <footer className="">
                 <Footer/>
             </footer>
         </div>

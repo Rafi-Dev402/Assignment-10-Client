@@ -1,39 +1,55 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddEquipment = () => {
     const { user } = useContext(AuthContext);
     const handleAddEquepment = (e) => {
         e.preventDefault()
-       const form = e.target;
+        const form = e.target;
 
-       const image = form.image.value;
-       const itemName = form.itemName.value;
-       const category = form.category.value;
-       const price = form.price.value;
-       const rating = form.rating.value;
-       const stock = form.stock.value;
-       const time = form.time.value;
-       const customization = form.customization.value;
-       const userName = form.userName.value;
-       const userEmail = form.userEmail.value;
-       const details = form.details.value;
-    //    console.log(image,itemName,category,price,rating,stock,time,customization,userName,userEmail,details)
-       const equepmentData = {image,itemName,category,price,rating,stock,time,customization,userName,userEmail,details}
-    //    console.log(equepmentData)
+        const image = form.image.value;
+        const itemName = form.itemName.value;
+        const category = form.category.value;
+        const price = form.price.value;
+        const rating = form.rating.value;
+        const stock = form.stock.value;
+        const time = form.time.value;
+        const customization = form.customization.value;
+        const userName = form.userName.value;
+        const userEmail = form.userEmail.value;
+        const details = form.details.value;
+        
+        //    console.log(image,itemName,category,price,rating,stock,time,customization,userName,userEmail,details)
+        const equepmentData = { image, itemName, category, price, rating, stock, time, customization, userName, userEmail, details }
+        //    console.log(equepmentData)
 
-       fetch('http://localhost:5000/equipments',{
-        method:'POST',
-        headers:{
-            'Content-type' : 'application/json',
-        },
-        body: JSON.stringify(equepmentData)
+        fetch('http://localhost:5000/equipments', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(equepmentData)
 
-       })
-       .then(res=>res.json())
-       .then(result=>{
-        console.log(result)
-       })
+        })
+            .then(res => res.json())
+            .then(result => {
+                if (result.insertedId) {
+                    Swal.fire({
+                        title: "Equipment added successfully!",
+                        icon: "success",
+                        draggable: true
+                    });
+                    e.target.reset()
+                }
+                else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Failed to add equipment.",
+                        text: "Please try again!",
+                    });
+                }
+            })
     }
     return (
         <div className='montserrat-font'>
@@ -64,9 +80,16 @@ const AddEquipment = () => {
                     <div className='flex flex-col lg:flex-row justify-center lg:items-center gap-4'>
                         <div className="form-control w-full">
                             <label className="label">
-                                <span className="label-text text-lg">Category Name</span>
+                                <span className="label-text text-lg">Select Category</span>
                             </label>
-                            <input name='category' type="text" placeholder="Enter Category Name" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
+                            <select name='category' className="select select-bordered w-full text-lg  bg-[#E5E7EB] text-[#333333]">
+                                <option disabled value={'Select Equipment Category'}>Select Equipment Category</option>
+                                <option>Cricket Equipment</option>
+                                <option>Football Equipment</option>
+                                <option>Fitness & Gym</option>
+                            </select>
+
+                            {/* <input name='category' type="text" placeholder="Enter Category Name" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required /> */}
                         </div>
                         <div className="form-control w-full">
                             <label className="label">

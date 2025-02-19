@@ -8,6 +8,7 @@ import MyEquipment from "../Pages/MyEquipment";
 import PrivetRoute from "./PrivetRoute";
 import AddEquipment from "../Pages/AddEquipment";
 import AllEquipment from "../Pages/AllEquipment";
+import EquipmentDetails from "../Pages/EquipmentDetails";
 
 
 const router = createBrowserRouter([
@@ -37,7 +38,13 @@ const router = createBrowserRouter([
         },
         {
           path:'/allEquipment',
-          element:<AllEquipment/>
+          element:<AllEquipment/>,
+          loader: ()=> fetch('http://localhost:5000/equipments')
+        },
+        {
+          path:'/equipmentDetails/:id',
+          element:<PrivetRoute><EquipmentDetails/></PrivetRoute>,
+          loader:({params})=> fetch(`http://localhost:5000/equipments/${params.id}`)
         }
         
     ]

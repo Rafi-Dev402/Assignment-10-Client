@@ -9,6 +9,8 @@ import PrivetRoute from "./PrivetRoute";
 import AddEquipment from "../Pages/AddEquipment";
 import AllEquipment from "../Pages/AllEquipment";
 import EquipmentDetails from "../Pages/EquipmentDetails";
+import UpdateEquipment from "../Pages/UpdateEquipment";
+import ErrorPage from "../Pages/ErrorPage";
 
 
 const router = createBrowserRouter([
@@ -29,12 +31,18 @@ const router = createBrowserRouter([
             element:<SignUp/>
         },
         {
-          path:'myEquipment',
-          element:<PrivetRoute><MyEquipment/></PrivetRoute>
+          path:'/myEquipment/:email',
+          element:<PrivetRoute><MyEquipment/></PrivetRoute>,
+          loader: ({params})=>fetch(`http://localhost:5000/equipment/${params?.email}`)
         },
         {
           path:'/addEquipment',
           element:<PrivetRoute><AddEquipment/></PrivetRoute>
+        },
+        {
+          path:'/updateEquipment/:id',
+          element:<PrivetRoute><UpdateEquipment/></PrivetRoute>,
+          loader:({params})=> fetch(`http://localhost:5000/equipments/${params?.id}`)
         },
         {
           path:'/allEquipment',
@@ -47,7 +55,8 @@ const router = createBrowserRouter([
           loader:({params})=> fetch(`http://localhost:5000/equipments/${params.id}`)
         }
         
-    ]
+    ],
+    errorElement: <ErrorPage/>
   },
 ]);
 

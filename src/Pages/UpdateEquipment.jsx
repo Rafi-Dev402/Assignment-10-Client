@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const AddEquipment = () => {
+
+const UpdateEquipment = () => {
     const { user } = useContext(AuthContext);
-    const handleAddEquepment = (e) => {
+    const { _id, image, itemName, category, price, rating, stock, customization, time, details } = useLoaderData();
+    const navigate = useNavigate()
+
+    const handleUpdateEquepment = (e) => {
         e.preventDefault()
         const form = e.target;
 
@@ -19,61 +24,64 @@ const AddEquipment = () => {
         const userName = form.userName.value;
         const userEmail = form.userEmail.value;
         const details = form.details.value;
+
+        const upadateData = { image, itemName, category, price, rating, stock, time, customization, userName, userEmail, details }
         
-        //    console.log(image,itemName,category,price,rating,stock,time,customization,userName,userEmail,details)
-        const equepmentData = { image, itemName, category, price, rating, stock, time, customization, userName, userEmail, details }
-        //    console.log(equepmentData)
 
-        fetch('http://localhost:5000/equipments', {
-            method: 'POST',
+        fetch(`http://localhost:5000/equipment/update/${_id}`, {
+            method: 'PUT',
             headers: {
-                'Content-type': 'application/json',
+                'Content-type': 'application/json'
             },
-            body: JSON.stringify(equepmentData)
-
+            body: JSON.stringify(upadateData)
         })
             .then(res => res.json())
             .then(result => {
-                if (result.insertedId) {
+                if (result.modifiedCount > 0) {
                     Swal.fire({
-                        title: "Equipment added successfully!",
+                        title: "Equipment updated successfully!",
                         icon: "success",
                         draggable: true
                     });
-                    e.target.reset()
+                navigate(`/myEquipment/${user.email}`)
+
                 }
                 else {
                     Swal.fire({
                         icon: "error",
-                        title: "Failed to add equipment.",
-                        text: "Please try again!",
+                        title: "You didn't update the data.",
+                        text: "Update the data, then try again.",
+                        
                     });
                 }
+                form.reset()
             })
     }
+
     return (
+
         <div className='montserrat-font'>
             <div className="card bg-[#F8F9FA] w-full max-w-sm md:max-w-lg lg:max-w-4xl shrink-0 shadow-md bordre-2 rounded-lg mx-auto px-0 md:px-10 lg:px-6 lg:py-2">
                 <div className='mt-5 mb-3'>
-                    <h1 className="text-4xl font-bold text-center text-blue-900">Add Equipment</h1>
-                    <p className='text-center w-auto px-1 md:px-3 lg:px-0 lg:w-[600px] mx-auto mt-3 text-[#64748B] text-lg font-medium'>Add new sports equipment with custom options like grip, logo, or size. Ensure quality gear for athletes, teams, and fitness enthusiasts!</p>
+                    <h1 className="text-4xl font-bold text-center text-blue-900">Update Your Equipment</h1>
+                    <p className='text-center w-auto px-1 md:px-3 lg:px-0 lg:w-[600px] mx-auto mt-3 text-[#64748B] text-lg font-medium'>Lets you edit item details, price, category, and images, ensuring your listings stay accurate and relevant!</p>
                 </div>
 
                 {/* INPUT Form----------------------->>>>>>>> */}
-                <form onSubmit={handleAddEquepment} className="card-body">
+                <form onSubmit={handleUpdateEquepment} className="card-body">
                     {/* main Div 1 */}
                     <div className='flex flex-col lg:flex-row justify-center lg:items-center gap-4'>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text text-lg"> Image URL</span>
                             </label>
-                            <input name='image' type="text" placeholder="Enter Image URL" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
+                            <input defaultValue={image} name='image' type="text" placeholder="Enter Image URL" className="text-base input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text text-lg">Item Name</span>
                             </label>
-                            <input name='itemName' type="text" placeholder="Enter Item Name" className=" text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
+                            <input defaultValue={itemName} name='itemName' type="text" placeholder="Enter Item Name" className=" text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
                         </div>
                     </div>
                     {/* main Div */}
@@ -82,7 +90,7 @@ const AddEquipment = () => {
                             <label className="label">
                                 <span className="label-text text-lg">Select Category</span>
                             </label>
-                            <select name='category' className="select select-bordered w-full text-lg  bg-[#E5E7EB] text-[#333333]">
+                            <select defaultValue={category} name='category' className="select select-bordered w-full text-lg  bg-[#E5E7EB] text-[#333333]">
                                 <option disabled value={'Select Equipment Category'}>Select Equipment Category</option>
                                 <option>Cricket Equipment</option>
                                 <option>Football Equipment</option>
@@ -95,7 +103,7 @@ const AddEquipment = () => {
                             <label className="label">
                                 <span className="label-text text-lg">Price</span>
                             </label>
-                            <input name='price' type="text" placeholder="Enter Equipment Price" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
+                            <input defaultValue={price} name='price' type="text" placeholder="Enter Equipment Price" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
                         </div>
                     </div>
                     {/* main Div */}
@@ -104,13 +112,13 @@ const AddEquipment = () => {
                             <label className="label">
                                 <span className="label-text text-lg">Rating</span>
                             </label>
-                            <input name='rating' type="text" placeholder="Enter Rating (Out of 5)" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
+                            <input defaultValue={rating} name='rating' type="text" placeholder="Enter Rating (Out of 5)" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text text-lg">Equipment Stock</span>
                             </label>
-                            <input name='stock' type="text" placeholder="Equipment's Total Stock" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
+                            <input defaultValue={stock} name='stock' type="text" placeholder="Equipment's Total Stock" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
                         </div>
                     </div>
                     {/* main Div */}
@@ -119,13 +127,13 @@ const AddEquipment = () => {
                             <label className="label">
                                 <span className="label-text text-lg">Processing Time</span>
                             </label>
-                            <input name='time' type="text" placeholder="Processing Time (delivery time)" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
+                            <input defaultValue={time} name='time' type="text" placeholder="Processing Time (delivery time)" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
                         </div>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text text-lg">Customization</span>
                             </label>
-                            <input name='customization' type="text" placeholder="Enter custom modifications (e.g., extra grip, custom logo, personalized text)" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
+                            <input defaultValue={customization} name='customization' type="text" placeholder="Enter custom modifications (e.g., extra grip, custom logo, personalized text)" className="text-lg input input-bordered w-full bg-[#E5E7EB] text-[#333333]" required />
                         </div>
                     </div>
                     {/* main Div */}
@@ -149,18 +157,19 @@ const AddEquipment = () => {
                         <label className="label">
                             <span className="label-text text-lg">Description</span>
                         </label>
-                        <textarea name='details' className="text-lg textarea textarea-bordered w-full bg-[#E5E7EB] text-[#333333] placeholder:text-lg" cols="20" placeholder=" Equipment Description"></textarea>
+                        <textarea defaultValue={details} name='details' className="text-lg textarea textarea-bordered w-full bg-[#E5E7EB] text-[#333333] placeholder:text-lg" cols="20" placeholder=" Equipment Description"></textarea>
                     </div>
                     {/* <div>
                         <textarea className="textarea textarea-bordered w-full bg-[#E5E7EB] text-[#333333]" cols="10" placeholder="Bio"></textarea>
                     </div> */}
                     <div className="form-control mt-6">
-                        <button className="btn bg-[#4F46E5] hover:bg-[#3730A3] text-white text-lg">Add Equipment</button>
+                        <button className="btn bg-[#4F46E5] hover:bg-[#3730A3] text-white text-lg">Update</button>
                     </div>
                 </form>
             </div>
         </div>
+
     );
 };
 
-export default AddEquipment;
+export default UpdateEquipment;

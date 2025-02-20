@@ -25,10 +25,10 @@ const Navbar = () => {
 
     const links = (
         <>
-            <li><NavLink className={'font-medium text-base '} to={'/'}>Home</NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={'/allEquipment'}>All Equipment </NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={'/addEquipment'}>Add Equipment  </NavLink></li>
-            <li><NavLink className={'font-medium text-base '} to={'myEquipment'}>My Equipment </NavLink></li>
+            <li><NavLink className={'font-medium text-lg text-white '} to={'/'}>Home</NavLink></li>
+            <li><NavLink className={'font-medium text-lg text-white '} to={'/allEquipment'}>All Equipment </NavLink></li>
+            <li><NavLink className={'font-medium text-lg text-white '} to={'/addEquipment'}>Add Equipment  </NavLink></li>
+            <li><NavLink className={'font-medium text-lg text-white '} to={`/myEquipment/${user?.email}`}>My Equipment </NavLink></li>
 
         </>
     )
@@ -67,9 +67,16 @@ const Navbar = () => {
                         {
                             (user) ?
                                 (user.photoURL) ?
-                                    <span className="border-[2px] border-white mr-2 md:mr-6 lg:mr-6 rounded-full btn btn-circle">
-                                        <img className="rounded-full   border-none object-fill " src={user?.photoURL} alt="" />
-                                    </span>
+
+                                    <div className="avatar mr-4 md:mr-6 lg:mr-6 ">
+                                        <div className="ring-primary ring-offset-base-100 border-white w-9 md:w-10 lg:w-11 rounded-full ring ring-offset-2">
+                                            <img src={user?.photoURL} />
+                                        </div>
+                                    </div>
+
+                                    // <span className="border-[2px] border-white mr-2 md:mr-6 lg:mr-6 rounded-full btn btn-circle">
+                                    //     <img className="rounded-full overflow-hidden  border-none object-cover " src={user?.photoURL} alt="" />
+                                    // </span>
                                     :
                                     <img src={userImg} className="rounded-full mr-6 btn btn-circle border-none" alt="" />
                                 :

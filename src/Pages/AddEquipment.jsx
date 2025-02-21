@@ -25,7 +25,7 @@ const AddEquipment = () => {
         const equepmentData = { image, itemName, category, price, rating, stock, time, customization, userName, userEmail, details }
         //    console.log(equepmentData)
 
-        fetch('http://localhost:5000/equipments', {
+        fetch('https://assignment-10-server-zeta-beryl.vercel.app/equipments', {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',

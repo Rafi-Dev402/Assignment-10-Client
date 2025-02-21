@@ -29,7 +29,7 @@ const UpdateEquipment = () => {
         const upadateData = { image, itemName, category, price, rating, stock, time, customization, userName, userEmail, details }
         
 
-        fetch(`http://localhost:5000/equipment/update/${_id}`, {
+        fetch(`https://assignment-10-server-zeta-beryl.vercel.app/equipment/update/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'

@@ -23,7 +23,7 @@ const MyEquipment = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // 
-                fetch(`http://localhost:5000/equipmentDel/${id}`, {
+                fetch(`https://assignment-10-server-zeta-beryl.vercel.app/equipmentDel/${id}`, {
                     method: 'DELETE',
                 })
                     .then(res => res.json())

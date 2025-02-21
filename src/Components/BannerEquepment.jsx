@@ -5,7 +5,7 @@ import BannerCard from "./BannerCard";
 const BannerEquepment = () => {
 
     useEffect(() => {
-        fetch('http://localhost:5000/equipments')
+        fetch('https://assignment-10-server-zeta-beryl.vercel.app/equipments')
             .then(res => res.json())
             .then(result => setEqdata(result.slice(0,6)))
 

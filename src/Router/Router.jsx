@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         {
           path:'/myEquipment/:email',
           element:<PrivetRoute><MyEquipment/></PrivetRoute>,
-          loader: ({params})=>fetch(`http://localhost:5000/equipment/${params?.email}`)
+          loader: ({params})=>fetch(`https://assignment-10-server-zeta-beryl.vercel.app/equipment/${params?.email}`)
         },
         {
           path:'/addEquipment',
@@ -42,17 +42,17 @@ const router = createBrowserRouter([
         {
           path:'/updateEquipment/:id',
           element:<PrivetRoute><UpdateEquipment/></PrivetRoute>,
-          loader:({params})=> fetch(`http://localhost:5000/equipments/${params?.id}`)
+          loader:({params})=> fetch(`https://assignment-10-server-zeta-beryl.vercel.app/equipments/${params?.id}`)
         },
         {
           path:'/allEquipment',
           element:<AllEquipment/>,
-          loader: ()=> fetch('http://localhost:5000/equipments')
+          loader: ()=> fetch('https://assignment-10-server-zeta-beryl.vercel.app/equipments')
         },
         {
           path:'/equipmentDetails/:id',
           element:<PrivetRoute><EquipmentDetails/></PrivetRoute>,
-          loader:({params})=> fetch(`http://localhost:5000/equipments/${params.id}`)
+          loader:({params})=> fetch(`https://assignment-10-server-zeta-beryl.vercel.app/equipments/${params.id}`)
         }
         
     ],

@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import GoogleButton from '../Components/GoogleButton';
 import { RiEyeCloseFill } from "react-icons/ri";
 import { HiEye } from "react-icons/hi";
+import { Helmet } from 'react-helmet-async';
 
 
 const SignUp = () => {
@@ -76,7 +77,9 @@ const SignUp = () => {
 
     return (
         <div className="container mx-auto  montserrat-font">
-
+            <Helmet>
+                <title>EquiSports | SignUp</title>
+            </Helmet>
             <GoogleButton />
 
             <div className="card bg-[#f8f8f8] w-full max-w-sm lg:max-w-xl shrink-0 shadow-lg border rounded-lg mx-auto mb-9">

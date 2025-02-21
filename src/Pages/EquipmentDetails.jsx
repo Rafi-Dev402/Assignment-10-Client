@@ -1,11 +1,15 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { GoStarFill } from "react-icons/go";
+import { Helmet } from 'react-helmet-async';
 
 const EquipmentDetails = () => {
     const { _id, image, itemName, category, price, rating, time, customization, stock, details, userEmail, userName } = useLoaderData()
     return (
         <div className='container mx-auto montserrat-font'>
+            <Helmet>
+                <title>Details</title>
+            </Helmet>
             <div className='mb-9'>
                 <h1 className='text-3xl text-blue-900 font-semibold text-center'>Equipment Details</h1>
             </div>

@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import GoogleButton from "../Components/GoogleButton";
 import { RiEyeCloseFill } from "react-icons/ri";
 import { HiEye } from "react-icons/hi";
+import { Helmet } from "react-helmet-async";
 
 const LoginPage = () => {
     const { userSignIn } = useContext(AuthContext)
@@ -41,6 +42,9 @@ const LoginPage = () => {
     }
     return (
         <div className="container mx-auto  montserrat-font">
+            <Helmet>
+                <title>EquiSports | Login</title>
+            </Helmet>
             <GoogleButton />
             <div className="card bg-[#f8f8f8] w-full max-w-sm lg:max-w-lg shrink-0 shadow-lg border rounded-lg mx-auto">
                 <h1 className="text-4xl font-bold text-center mt-5 text-[#333333]">Login now!</h1>

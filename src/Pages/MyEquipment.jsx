@@ -3,6 +3,7 @@ import { Link, NavLink, useLoaderData } from 'react-router-dom';
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoPencil } from "react-icons/io5";
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const MyEquipment = () => {
     const myLodedData = useLoaderData();
@@ -54,6 +55,9 @@ const MyEquipment = () => {
 
     return (
         <div className='container mx-auto montserrat-font'>
+            <Helmet>
+                <title>My Equipments</title>
+            </Helmet>
             <section className='w-11/12 mx-auto '>
                 <h1 className='text-blue-900 font-semibold text-3xl mb-9'>Your Equipments ({userEq.length})</h1>
                 <div>

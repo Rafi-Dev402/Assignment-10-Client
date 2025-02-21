@@ -1,9 +1,13 @@
+import { Helmet } from 'react-helmet-async';
 import error from '../assets/error.jpg'
 
 const ErrorPage = () => {
 
     return (
         <div className=' mx-auto bg-white montserrat-font'>
+            <Helmet>
+                <title>Error!</title>
+            </Helmet>
             <div className='flex justify-center items-center h-screen'>
                 <div>
                     <h1 className='text-center text-3xl md:text-5xl lg:text-7xl font-bold text-gray-900'>Opps!</h1>

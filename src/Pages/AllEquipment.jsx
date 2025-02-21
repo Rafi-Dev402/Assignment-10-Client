@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { FaArrowRight } from "react-icons/fa6";
 import { BsSortUp } from "react-icons/bs";
+import { Helmet } from 'react-helmet-async';
 
 const AllEquipment = () => {
     const loddedData = useLoaderData();
@@ -14,6 +15,9 @@ const AllEquipment = () => {
 
     return (
         <div className='container lg:w-9/12 mx-auto montserrat-font'>
+            <Helmet>
+                <title>EquiSports | All Equipments</title>
+            </Helmet>
             <section className=' mx-auto'>
                 <div className='flex justify-between items-center mb-9'>
                     <h1 className=' text-2xl lg:text-3xl text-blue-900 font-semibold text-start '>All Equipments ({eqData.length})</h1>

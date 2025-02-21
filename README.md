@@ -1,8 +1,21 @@
-# React + Vite
+## Firebase Authentication
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ - Google sign in,
+ - Email password Authentication
+ 
+ 
+ ## Key Features
 
-Currently, two official plugins are available:
+ - Firebase Authentication – Users can log in using Google or email-password authentication.
+ - View All Sports Equipment – Everyone can see all available sports equipment.
+ - Details View – Clicking the "Details" button allows users to view specific equipment information.
+ - Add Equipment – Users can add new sports equipment.
+ - My Equipment Page – Users can only see the equipment they have added.
+ - Update & Delete Data – Users can update or delete only their added data.
+ - MongoDB Database – MongoDB is used to store and manage all data.
+ - Responsive for obile, tablet, and desktop views.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Live Link
+
+[https://equisports-a10.web.app/](https://equisports-a10.web.app/)
